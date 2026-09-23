@@ -1,0 +1,32 @@
+name: PR Checks
+
+# A pull request builds the site exactly as Publish would, strict, and stops
+# there.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+  merge_group:
+  workflow_dispatch:
+
+concurrency:
+  group: pr-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    uses: yousleep-ai/docs/.github/workflows/build-site.yml@main
+    secrets: inherit
+
+  checks:
+    name: checks
+    needs: [build]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if the build did not succeed
+        if: needs.build.result != 'success'
+        run: exit 1

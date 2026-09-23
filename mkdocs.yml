@@ -1,0 +1,33 @@
+# What this rendering decides. Everything shared -- theme, plugins, hooks,
+# extensions, validation -- is mkdocs.base.yml in yousleep-ai/docs, which the
+# build places beside this file.
+INHERIT: mkdocs.base.yml
+
+site_name: youSleep Developer Documentation
+site_description: The youSleep Portal for developers — the Python SDK, the REST API, and how to package an analysis to run on the platform.
+site_url: https://yousleep-ai.github.io/docs-public/
+repo_url: https://github.com/yousleep-ai/docs-public
+repo_name: yousleep-ai/docs-public
+edit_uri: ""
+
+nav:
+  - Home: "index.md"
+  - Start here:
+    - The platform in five minutes: "start/platform.md"
+    - Glossary: "start/glossary.md"
+  - Python SDK:
+    - Overview: "components/common/index.md"
+    - Guide: "components/common/sdk-guide.md"
+    - Workflows: "components/common/sdk-workflows.md"
+    - Bulk operations: "components/common/sdk-selectors.md"
+    - Study metadata in bulk: "components/common/sdk-bulk-metadata.md"
+    - Integrating a system: "components/common/integration-guide.md"
+    - Version pairing: "components/common/version-pairing.md"
+    - What is in the package: "components/common/components.md"
+  - Build an analysis:
+    - Packaging an analysis: "components/common/analysis-authoring.md"
+    - The manifest: "components/common/analysis-manifest.md"
+    - The events document: "components/common/events-document.md"
+    - Checking an image: "components/common/conformance.md"
+    - Registration: "build/registration.md"
+  - API reference: "reference/Common/"

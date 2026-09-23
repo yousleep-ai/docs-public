@@ -1,0 +1,40 @@
+name: Publish
+
+# The public developer site. Built by the private documentation repository's
+# toolchain (yousleep-ai/docs, build-site.yml) from this repository's overlay:
+# sources.yml, mkdocs.yml and docs/. Rebuilt on every push here and daily, so a
+# documentation change in a source repository reaches the site without anyone
+# touching this one.
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "30 6 * * *"
+  repository_dispatch:
+    types: [source-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    uses: yousleep-ai/docs/.github/workflows/build-site.yml@main
+    secrets: inherit
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
