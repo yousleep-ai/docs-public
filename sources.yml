@@ -27,6 +27,7 @@ sources:
       - analysis-manifest.md
       - events-document.md
       - analysis-authoring.md
+      - init.md
       - conformance.md
     reference:
       package: yousleep_common

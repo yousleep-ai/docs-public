@@ -50,6 +50,7 @@ nav:
     - What is in the package: "components/common/components.md"
   - Build an analysis:
     - Packaging an analysis: "components/common/analysis-authoring.md"
+    - Starting a project: "components/common/init.md"
     - The manifest: "components/common/analysis-manifest.md"
     - The events document: "components/common/events-document.md"
     - Checking an image: "components/common/conformance.md"
