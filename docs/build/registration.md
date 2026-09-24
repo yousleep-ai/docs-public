@@ -14,6 +14,9 @@ flowchart LR
 
 ## What to send
 
+A project started with [`yousleep-init`](../components/common/init.md) has everything
+below in place after `make record`.
+
 - **The image**, as a reference we can pull or as a `docker save` archive.
 - **The configuration file**, the one `yousleep-verify` passed with.
 - **The expected document**, `conformance/expected-events.json.gz`, recorded with

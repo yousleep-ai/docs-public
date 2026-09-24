@@ -33,8 +33,8 @@ The platform is organised around six objects.
 
     ---
 
-    Package an algorithm as a container that follows the container contract, and
-    register it to run on the platform.
+    Start a project with `yousleep-init`, replace the method, and register the
+    image to run on the platform.
 
 </div>
 
