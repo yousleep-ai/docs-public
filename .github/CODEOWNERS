@@ -1,8 +1,5 @@
-# Instruction surface: files that define how agents work are routed to the
-# owner for review. The ruleset does not enforce code-owner review (approvals
-# are 0 under the sole-owner model, quality#15); what protects these files is
-# the classification and checks required contexts plus the propose-only rule
-# in CLAUDE.md. Routing only.
+# Files that define how this site is built, published and reviewed are routed
+# to the repository owner for review.
 /CLAUDE.md @perslev
-/.claude/ @perslev
-/.github/CODEOWNERS @perslev
+/.github/ @perslev
+/sources.yml @perslev
