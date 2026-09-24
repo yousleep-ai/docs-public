@@ -40,8 +40,8 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ secrets.YOUSLEEP_CI_BOT_APP_ID }}
-          private-key: ${{ secrets.YOUSLEEP_CI_BOT_PRIVATE_KEY }}
+          app-id: ${{ secrets.DOCS_READER_APP_ID }}
+          private-key: ${{ secrets.DOCS_READER_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
       - uses: actions/checkout@v7

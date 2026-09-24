@@ -10,6 +10,31 @@ repo_url: https://github.com/yousleep-ai/docs-public
 repo_name: yousleep-ai/docs-public
 edit_uri: ""
 
+# The plugin list is re-declared (INHERIT replaces lists, it does not merge
+# them) for one difference from the internal site: the API reference does not
+# embed source-code blocks. The code is what PyPI ships, so nothing is hidden;
+# the public site simply has no reason to display it.
+plugins:
+  - gen-files:
+      scripts:
+      - gen_ref_pages.py
+      - gen_component_docs.py
+  - literate-nav
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - components/common/src
+          options:
+            docstring_style: google
+            show_source: false
+            extensions:
+              - griffe_pydantic
+  - search
+  - autorefs
+  - macros
+  - monorepo
+
 nav:
   - Home: "index.md"
   - Start here:
