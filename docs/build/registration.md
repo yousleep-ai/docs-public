@@ -21,13 +21,13 @@ flowchart LR
 - **The check's report**, `yousleep-verify --json`, so we see what you saw.
 
 Send it through the portal's contact form under *Integrate an algorithm*, or to
-[contact@yousleep.ai](mailto:contact@yousleep.ai). Nothing in it should be real
-recordings: the check runs on a synthetic one, and so do we.
+[contact@yousleep.ai](mailto:contact@yousleep.ai). Do not include real recordings:
+the check runs on a synthetic one on both sides.
 
 ## What we do
 
-1. Run the same check, on the platform's architecture (`linux/amd64`). It has to pass
-   there; nothing else is registered.
+1. Run the same check on the platform's architecture (`linux/amd64`). An image that
+   fails there is not registered.
 2. Pin the digest the check reports, so the exact bytes that passed are what runs.
 3. Copy the image into a registry the platform controls. A past analysis has to stay
    re-runnable, and that cannot depend on a registry we do not operate.
@@ -44,7 +44,7 @@ may run it, and on what terms, follows from the licence class in the configurati
 
 ## What changes later
 
-The check you run and the check we run are already the same tool. What is being
-designed is the path between them: submitting the bundle above from the portal, a
-quarantine where an image waits until the check has passed, and registration without a
-person in the loop. When that exists, this page shrinks to one command.
+The check you run and the check we run are the same tool. What is being designed
+is the path between them: submitting the bundle above from the portal, a quarantine
+where an image waits until the check has passed, and registration without a person
+in the loop. When that exists, this page will describe a single command.

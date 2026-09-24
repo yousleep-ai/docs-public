@@ -1,7 +1,6 @@
 # The platform in five minutes
 
-Six nouns carry everything the platform does. Learn them and every page here reads
-easily.
+The platform is organised around six objects.
 
 | Term | What it is |
 |---|---|
@@ -12,7 +11,7 @@ easily.
 | **Events** | What an analysis produces: labelled intervals on the recording, sleep stages above all. |
 | **Report** | Statistics and figures over a study, or over a project with its studies grouped and compared. |
 
-## Three ways in
+## Ways of using the platform
 
 <div class="grid cards" markdown>
 
@@ -21,22 +20,21 @@ easily.
     ---
 
     Create a project, upload recordings, run analyses, inspect signals with events
-    overlaid, and read the reports. Everything below is available here first.
+    overlaid, and read the reports.
 
 -   :material-code-braces:{ .lg .middle } **The API and SDK**
 
     ---
 
-    The same operations as HTTP requests, or as a typed Python client that adds
-    end-to-end workflows. For pipelines, integrations and cohorts too large to click
-    through.
+    The same operations as HTTP requests, or through a typed Python client that adds
+    end-to-end workflows. For pipelines, integrations and large cohorts.
 
 -   :material-package-variant:{ .lg .middle } **Your own analysis**
 
     ---
 
-    An algorithm packaged as a container that obeys a small contract runs on the
-    platform beside the ones we host, on your recordings or on everyone's.
+    An algorithm packaged as a container that follows the container contract can be
+    registered and run on the platform.
 
 </div>
 
@@ -46,8 +44,7 @@ An analysis in the catalogue is two things: a **container image**, and a
 **configuration** that says what it is, who wrote it, what it needs from a recording
 and what it produces. The platform reads the configuration to offer the analysis, to
 check a recording against its requirements, to reserve the resources a run needs and to
-present the result; the image never sees any of that except through the manifest it is
-given.
+present the result. The image receives only the manifest.
 
 ```mermaid
 sequenceDiagram

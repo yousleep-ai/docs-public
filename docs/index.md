@@ -15,8 +15,8 @@ Python SDK, or by bringing an analysis of your own to run on it.
 
     ---
 
-    Upload recordings, submit analyses and collect results from Python, one file or a
-    thousand, with typed models throughout.
+    Upload recordings, submit analyses and collect results from Python, for one file
+    or a whole cohort, with typed models throughout.
 
     [:octicons-arrow-right-24: Python SDK](components/common/index.md)
 
@@ -33,8 +33,8 @@ Python SDK, or by bringing an analysis of your own to run on it.
 
     ---
 
-    Package your own algorithm as a container that reads one manifest and writes one
-    document, check it with our tool, and register it.
+    Package an algorithm as a container that reads one manifest and writes one
+    document, check it with the conformance tool, and register it.
 
     [:octicons-arrow-right-24: Packaging an analysis](components/common/analysis-authoring.md)
 
