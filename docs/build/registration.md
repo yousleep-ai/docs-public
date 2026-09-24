@@ -1,8 +1,8 @@
 # Registration
 
-An analysis enters the catalogue by registration. Today it is done with the platform
-team; a self-service path is being designed. This page says what to send, what we do
-with it, and what changes afterwards.
+An analysis enters the catalogue by registration. Registration is currently done
+together with the platform team; a self-service path is being designed. This page
+describes what to send, what we do with it, and what changes afterwards.
 
 ```mermaid
 flowchart LR
@@ -18,7 +18,8 @@ flowchart LR
 - **The configuration file**, the one `yousleep-verify` passed with.
 - **The expected document**, `conformance/expected-events.json.gz`, recorded with
   `--record` on your final image.
-- **The check's report**, `yousleep-verify --json`, so we see what you saw.
+- **The check's report**, `yousleep-verify --json`, so that we can compare it with
+  our run.
 
 Send it through the portal's contact form under *Integrate an algorithm*, or to
 [contact@yousleep.ai](mailto:contact@yousleep.ai). Do not include real recordings:
@@ -36,7 +37,7 @@ the check runs on a synthetic one on both sides.
 5. Register the configuration. Its provenance and licence blocks are shown to users as
    written, so they are checked for completeness, not rewritten.
 
-## What it looks like afterwards
+## After registration
 
 Your analysis is listed in the catalogue with its provenance, what it cites and the
 licence it is offered under, and every result it produces carries that attribution. Who

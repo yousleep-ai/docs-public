@@ -56,7 +56,8 @@
   with named colleagues.
 
 **Project**
-: The container you organise and share: studies, their recordings, analyses and reports.
+: The unit you organise and share. It holds studies, their recordings, analyses and
+  reports.
 
 **Recording**
 : An EDF file belonging to a study.
@@ -70,8 +71,8 @@
   compared; exportable as figures and tables.
 
 **Slot**
-: A labelled input position an analysis declares, a left and a right EOG say, which the
-  platform fills with one channel of the recording.
+: A labelled input position an analysis declares, for example a left and a right EOG,
+  which the platform fills with one channel of the recording.
 
 **Study**
 : One subject's recording session and its metadata, inside a project.

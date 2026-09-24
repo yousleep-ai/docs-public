@@ -2,8 +2,8 @@
 
 The youSleep Portal runs peer-reviewed sleep-analysis algorithms on polysomnography
 recordings, one at a time or across a cohort, and turns their output into events,
-figures and reports. It is used through a web portal, through a REST API and its
-Python SDK, or by bringing an analysis of your own to run on it.
+figures and reports. It can be used through the web portal, through the REST API and
+its Python SDK, or by registering an analysis of your own to run on it.
 
 !!! note "Research use"
     youSleep is for research and other non-commercial use. Neither the platform nor
@@ -42,8 +42,8 @@ Python SDK, or by bringing an analysis of your own to run on it.
 
     ---
 
-    Projects, studies, recordings, analyses, events and reports, and how a run moves
-    through them.
+    Learn what projects, studies, recordings, analyses, events and reports are, and
+    how a run moves through them.
 
     [:octicons-arrow-right-24: The platform in five minutes](start/platform.md)
 
@@ -61,10 +61,10 @@ flowchart LR
     E -.-> A2[Another analysis<br/>that builds on it]
 ```
 
-A recording is uploaded into a study. An analysis runs on it as a container the platform
-starts with one argument, the path of a manifest describing the run, and collects one
-document of events from. Those events are what the viewer overlays on the signal, what
-the reports summarise, and what a dependent analysis can take as its input.
+A recording is uploaded into a study. An analysis runs on it as a container. The
+platform starts the container with one argument, the path of a manifest describing the
+run, and collects one events document from it. The viewer overlays those events on the
+signal, the reports summarise them, and a dependent analysis can take them as input.
 
 ## Where things are
 
