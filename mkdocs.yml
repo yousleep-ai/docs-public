@@ -1,6 +1,6 @@
-# What this rendering decides. Everything shared -- theme, plugins, hooks,
-# extensions, validation -- is mkdocs.base.yml in yousleep-ai/docs, which the
-# build places beside this file.
+# What this site decides. Everything shared -- theme, plugins, hooks,
+# extensions, validation -- is mkdocs.base.yml from the documentation
+# toolchain, which the build places beside this file.
 INHERIT: mkdocs.base.yml
 
 site_name: youSleep Developer Documentation
@@ -11,9 +11,8 @@ repo_name: yousleep-ai/docs-public
 edit_uri: ""
 
 # The plugin list is re-declared (INHERIT replaces lists, it does not merge
-# them) for one difference from the internal site: the API reference does not
-# embed source-code blocks. The code is what PyPI ships, so nothing is hidden;
-# the public site simply has no reason to display it.
+# them) so that the API reference does not embed source-code blocks. The code
+# is what PyPI ships; the site has no reason to display it.
 plugins:
   - gen-files:
       scripts:

@@ -1,14 +1,11 @@
 name: Publish
 
-# The public developer site. Built by the documentation toolchain in the private
-# repository yousleep-ai/docs -- checked out here with the documentation bot's
-# token -- from this repository's overlay: sources.yml, mkdocs.yml and docs/.
-# (A public repository cannot call a private repository's reusable workflow, so
-# the steps live here and the toolchain is a checkout; what is reused is the
-# build itself, build_overlay.sh, not a copy of it.)
+# The public developer site, built by the youSleep documentation toolchain
+# (yousleep-ai/docs, checked out with a read-only token) from this
+# repository's sources.yml, mkdocs.yml and docs/.
 #
 # Rebuilt on every push here and daily, so a documentation change in a source
-# repository reaches the site without anyone touching this one.
+# repository reaches the site without a change here.
 on:
   push:
     branches: [main]

@@ -1,10 +1,9 @@
-# Which repositories contribute to the public developer site, and exactly which
-# of their pages. The private documentation site (yousleep-ai/docs) aggregates
-# everything; this rendering aggregates an allowlist. A page becomes public by
-# being listed here, so a change to this file is a publication decision.
+# Which repositories contribute to this site, and which of their pages. A page
+# becomes public by being listed here, so a change to this file is a
+# publication decision.
 #
-# Built by yousleep-ai/docs's toolchain (build-site.yml); the keys are its:
-#   name / repo / ref / docs / target   as there
+# Keys per source:
+#   name / repo / ref / docs / target   where the pages come from and where they land
 #   include                             the pages copied, relative to `docs`
 #   reference                           generate the API reference for this package
 
@@ -13,8 +12,8 @@ sources:
     repo: yousleep-ai/common
     ref: main
     docs: docs
-    # Same path as on the internal site, so a page's relative links (to the
-    # generated reference above all) resolve identically in both renderings.
+    # Keeps the pages' relative links, to the generated reference in
+    # particular, intact.
     target: components/common
     include:
       - index.md
