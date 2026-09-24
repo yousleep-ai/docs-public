@@ -5,7 +5,7 @@ INHERIT: mkdocs.base.yml
 
 site_name: youSleep Developer Documentation
 site_description: The youSleep Portal for developers — the Python SDK, the REST API, and how to package an analysis to run on the platform.
-site_url: https://yousleep-ai.github.io/docs-public/
+site_url: https://docs.yousleep.ai/
 repo_url: https://github.com/yousleep-ai/docs-public
 repo_name: yousleep-ai/docs-public
 edit_uri: ""

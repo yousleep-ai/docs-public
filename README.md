@@ -1,7 +1,7 @@
 # youSleep developer documentation
 
 The public developer site for the youSleep Portal, published at
-[yousleep-ai.github.io/docs-public](https://yousleep-ai.github.io/docs-public/).
+[docs.yousleep.ai](https://docs.yousleep.ai/).
 It covers the Python SDK, the REST API and how to package an analysis to run
 on the platform.
 
