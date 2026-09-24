@@ -66,9 +66,9 @@ arrives as a file; everything it produces is a file.
 ## What is hosted today
 
 **U-Sleep**, a published and peer-reviewed sleep-staging algorithm, in the
-configurations listed in the portal's catalogue. Each configuration says who developed
-it, what it cites and under which licence it is offered, and the catalogue shows that
-beside every result.
+configurations listed in the [portal's analysis catalogue](https://portal.yousleep.ai/analyses).
+Each configuration states who developed it, what it cites and under which licence it is
+offered, and the catalogue shows that beside every result.
 
 ## What to read next
 
