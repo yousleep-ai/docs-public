@@ -15,7 +15,10 @@ on the platform.
   reviewed as one.
 - The site is built by the youSleep documentation toolchain, which the
   workflow in `.github/workflows/` checks out, so the site shares its theme
-  and build rules with the rest of the youSleep documentation.
+  and build rules with the rest of the youSleep documentation. The build
+  fails if the output contains anything beyond the listed pages or text that
+  is not meant to be public, so a pull request here is checked the same way
+  before it can merge.
 
 ## Contributing
 
