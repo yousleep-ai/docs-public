@@ -9,7 +9,7 @@ flowchart LR
     B[Build the image] --> C[Check it with yousleep-verify]
     C --> S[Send it to us]
     S --> R[We check it the same way,<br/>pin the digest, register it]
-    R --> A[It appears in the catalogue]
+    R --> A[It appears in your<br/>organisation's catalogue]
 ```
 
 ## What to send
@@ -35,16 +35,21 @@ the check runs on a synthetic one on both sides.
 2. Pin the digest the check reports, so the exact bytes that passed are what runs.
 3. Copy the image into a registry the platform controls. A past analysis has to stay
    re-runnable, and that cannot depend on a registry we do not operate.
-4. Set the fields that are ours: scheduling, availability, and the memory terms that
-   scale with recording length, which we measure on long recordings.
+4. Set the fields that are ours: scheduling and the memory terms that scale with
+   recording length, which we measure on long recordings.
 5. Register the configuration. Its provenance and licence blocks are shown to users as
    written, so they are checked for completeness, not rewritten.
 
 ## After registration
 
-Your analysis is listed in the catalogue with its provenance, what it cites and the
-licence it is offered under, and every result it produces carries that attribution. Who
-may run it, and on what terms, follows from the licence class in the configuration.
+Your analysis is offered first to the organisation it is registered for. Its members
+find it in the catalogue with its provenance, what it cites and the licence it is offered
+under, and every result it produces carries that attribution.
+
+An analysis developed outside youSleep is offered to every user only once its developer's
+signed Analysis Declaration is on record: a form stating what the analysis is, what data
+it was developed on and under which terms, and how to credit it. We send it for signature.
+The licence class in the configuration sets the terms on which the analysis may be run.
 
 ## What changes later
 
