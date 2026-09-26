@@ -78,7 +78,7 @@ any change, so a later failure points to the change that caused it.
 
 Replace the placeholder method in `analysis.py`. The finished script
 ([`analysis.py`](https://github.com/yousleep-ai/analysis-example/blob/main/yasa-sleep-staging/analysis.py))
-does five things, in order:
+does four things, in order:
 
 1. **Selects the channels** the platform chose for this run, and checks each header
    label against the manifest, so the wrong file is refused before any signal is read.
@@ -89,10 +89,7 @@ does five things, in order:
    (0 < age < 120) and a sex of `male` or `female`. YASA's classifiers with demographics
    were trained on a binary sex and need both values; in every other case the script
    runs the classifier without demographics.
-4. **Names the classifier generation** it runs (0.5.0). YASA otherwise loads the newest
-   classifiers it ships, so a YASA release could change your results; see
-   [Versions](../components/common/analysis-authoring.md#versions).
-5. **Writes one event per 30-second epoch**: the predicted stage with its probability, or
+4. **Writes one event per 30-second epoch**: the predicted stage with its probability, or
    every stage's probability when the user asks for it (step 3).
 
 ```python
@@ -111,14 +108,7 @@ if subject and subject.age and 0 < subject.age < 120 and subject.sex in ("male",
 
 staging = yasa.SleepStaging(raw, eeg_name=header["EEG"], eog_name=header.get("EOG"),
                             emg_name=header.get("EMG"), metadata=metadata)
-model = "clf_eeg" + "".join(
-    suffix
-    for suffix, used in (("+eog", "EOG" in header), ("+emg", "EMG" in header),
-                         ("+demo", metadata is not None))
-    if used
-)
-classifier = Path(yasa.__file__).parent / "classifiers" / f"{model}_lgb_{CLASSIFIERS}.joblib"
-hypnogram = staging.predict(path_to_model=str(classifier))  # stages per epoch, with .proba
+hypnogram = staging.predict()  # stages per epoch, with .proba
 
 store_all = bool(manifest.parameters.get("store-all-probabilities", False))
 channels = [channel.name for channel in selected]
@@ -135,7 +125,7 @@ for i, stage in enumerate(hypnogram.hypno):
 save_event_blocks(output, events, device={"software": "yasa", "version": yasa.__version__})
 ```
 
-`CLASSIFIERS` is `"0.5.0"`, and `STAGES` maps YASA's stage names (`WAKE`, `N1`, `N2`,
+`STAGES` maps YASA's stage names (`WAKE`, `N1`, `N2`,
 `N3`, `REM`) to the platform's labels. The script uses four helpers from
 `yousleep-common`:
 
@@ -150,11 +140,18 @@ The script sets no thread limits: the platform sets the thread-count variables
 (`OMP_NUM_THREADS` and the others) to the analysis's cores, and the libraries YASA uses
 read them.
 
+YASA chooses the classifier itself, from the channels it is given and whether subject
+values are passed. The YASA version in `requirements.txt` (step 4) fixes which
+classifiers the image carries, and `source_version` in the configuration records it
+(step 3). When you upgrade YASA, the recorded output (step 6) reports any change in
+results; new classifiers need a new analysis id, as
+[Versions](../components/common/analysis-authoring.md#versions) describes.
+
 ## 3. Write the configuration
 
 `yasa-staging.yaml` already holds the channel types and the provenance from the
-command's flags. Add the subject values, the five output labels, the full-probability
-parameter and the citation. The parts you edit look like this
+command's flags. Add the source version, the subject values, the five output labels, the
+full-probability parameter and the citation. The parts you edit look like this
 ([full file](https://github.com/yousleep-ai/analysis-example/blob/main/yasa-sleep-staging/yasa-staging.yaml)):
 
 ```yaml
@@ -163,6 +160,7 @@ provenance:
   developer: "Raphael Vallat"
   source_url: "https://github.com/raphaelvallat/yasa"
   source_licence: "BSD-3-Clause"
+  source_version: "YASA 0.7.0, classifiers 0.5.0"
   data_rights:
     basis: "pending"
 evidence:
@@ -210,6 +208,8 @@ parameters:
   resamples it to 100 Hz and filters it to 0.4-30 Hz. The bounds in a configuration are
   inclusive, so every channel requires at least 81 Hz. A channel below that, such as the
   1 Hz chin signal some recordings carry, is left out, and the run continues without it.
+- **Source version.** `source_version` names the YASA release in the image and the
+  classifier generation it loads. It is shown on the analysis page.
 - **Full probabilities.** `supports_full_probabilistic_output` tells the platform the
   analysis can write every stage's probability. A user asks for it per run through the
   `store-all-probabilities` parameter, which the script reads from the manifest.
@@ -318,6 +318,10 @@ Commit the recorded document with the project. Every later `make verify` compare
 image's output with it, so any change in results is reported. Record it from the
 linux/amd64 build: floating-point results differ between architectures, and an arm64
 build does not match an amd64 recording.
+
+Run the check in CI as well. The finished project's repository runs it on every pull
+request with
+[`verify.yml`](https://github.com/yousleep-ai/analysis-example/blob/main/.github/workflows/verify.yml).
 
 ## 7. Run it on a real recording
 
