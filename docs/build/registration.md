@@ -8,7 +8,7 @@ describes what to send, what we do with it, and what changes afterwards.
 flowchart LR
     B[Build the image] --> C[Check it with yousleep-verify]
     C --> S[Send it to us]
-    S --> R[We check it the same way,<br/>pin the digest, register it]
+    S --> R[We check it the same way,<br/>measure its memory, pin the digest, register it]
     R --> A[It appears in your<br/>organisation's catalogue]
 ```
 
@@ -22,7 +22,10 @@ below in place after `make record`.
 - **The expected document**, `conformance/expected-events.json.gz`, recorded with
   `--record` on your final image.
 - **The check's report**, `yousleep-verify --json`, so that we can compare it with
-  our run.
+  our run. Its `run` line reports the peak memory the container used: set
+  `base_system_memory_mib` so that the peak is at most about 77% of it, which leaves
+  30% headroom. If you measured memory against recording length with
+  `yousleep-verify --meter --propose`, send that output too.
 
 Send it through the portal's contact form under *Integrate an algorithm*, or to
 [contact@yousleep.ai](mailto:contact@yousleep.ai). Do not include real recordings:
@@ -36,7 +39,9 @@ the check runs on a synthetic one on both sides.
 3. Copy the image into a registry the platform controls. A past analysis has to stay
    re-runnable, and that cannot depend on a registry we do not operate.
 4. Set the fields that are ours: scheduling and the memory terms that scale with
-   recording length, which we measure on long recordings.
+   recording length. We measure those with `yousleep-verify --meter` on synthetic
+   recordings of up to 48 hours at 128 to 512 Hz. When the declared terms leave less
+   than 30% headroom at any point, we set the terms it proposes.
 5. Register the configuration. Its provenance and licence blocks are shown to users as
    written, so they are checked for completeness, not rewritten.
 

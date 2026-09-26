@@ -299,8 +299,10 @@ out of memory. It had two causes:
   each channel to the next power of two. Memory therefore grows by about 100 to
   200 MiB per hour at 256 to 512 Hz, and steps with recording length.
 
-`yousleep-verify` cannot detect either cause: its fixture is five minutes long and
-carries only the declared channels.
+At the time, `yousleep-verify` could detect neither cause: its fixture was five
+minutes long and carried only the declared channels. Since 33.4.0, its recordings
+carry 20 undeclared signals, as a polysomnogram does, and every run reports its peak
+memory, so a script that reads the whole file shows a clearly higher peak.
 
 ## 11. Measure memory and set the claim
 
@@ -334,8 +336,15 @@ resources:
   per_hour_per_channel_per_khz_system_memory_mib: 90
 ```
 
-The author sets `cpu_cores` and `base_system_memory_mib`. The platform team sets the
-terms that scale with recording length at registration.
+The claim was then checked with `yousleep-verify --meter`, which ran the image 13
+times on synthetic recordings of 1 to 24 hours at 128, 256 and 512 Hz with one and
+three channels, including the lengths just past a power-of-two boundary. Every point
+had at least 39% headroom under the claim, and `--propose` suggested terms within a
+few per cent of it for the longest recordings.
+
+The author sets `cpu_cores`, and `base_system_memory_mib` from the peak that
+`yousleep-verify` reports. The platform team sets the terms that scale with recording
+length at registration, measured with `--meter`.
 
 ## Problems found and where they were fixed
 
@@ -352,8 +361,8 @@ The last column records whether the run with `yousleep-common` 33.0.0 met the pr
 | An expected document recorded on arm64 did not match the amd64 build | The generated Makefile builds for linux/amd64, and the check names the first difference, 31.1.0 | No with the default build; an arm64 build still fails `expected` |
 | Optional channel types were required at submission, and the check never ran without them | The platform and the portal; the `required-only` run, 32.1.0 | No; `required-only` passes. The platform side was not tested locally |
 | A sex of `other` or `unknown` was passed to YASA as female | The script | Depends on the method; the manifest's `sex` can also be `other` or `unknown` |
-| The script read every channel of the file | The script: pick, then load | No, because the generated script picks first; the check cannot detect it |
-| The memory claim was not measured | Measured at registration; a per-kHz term in the configuration model, 32.3.0 | Not an author step |
+| The script read every channel of the file | The script: pick, then load; the check's recordings carry undeclared channels and every run reports its peak, 33.4.0 | No, because the generated script picks first |
+| The memory claim was not measured | Measured at registration with `yousleep-verify --meter`, 33.4.0; a per-kHz term in the configuration model, 32.3.0 | Not an author step |
 | The commented `evidence` example in the generated configuration fails validation | `yousleep-init`, 33.1.0 | Yes |
 | `make run` selects every channel, which the manifest tool refuses for this configuration | `yousleep-manifest` selects as the platform does, 33.1.0 | Yes |
 | A hand run cannot set subject values | `yousleep-manifest --age --sex --bmi`, 33.1.0 | Yes |
