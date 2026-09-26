@@ -14,7 +14,8 @@ Declaration is on record.
     The commands and outputs are from a run with `yousleep-common` 33.0.0 and YASA
     0.7.0 on an arm64 machine. Most problems were met in two earlier attempts with
     older versions, or in the first production run; the table at the end records
-    which of them the run with 33.0.0 still met.
+    which of them the run with 33.0.0 still met. The three it met are fixed in
+    33.1.0.
 
 ## 1. Generate the project
 
@@ -52,6 +53,9 @@ following:
   `male` or `female`. YASA's classifiers with demographics need both values and were
   trained on a binary sex; given an age alone, YASA 0.7.0 raises a `ValueError`;
 - sizes native thread pools to `manifest.resources.cpus`;
+- names the generation of YASA's trained classifiers it runs (0.5.0), because YASA
+  otherwise picks the newest it ships and a release adding one would change results
+  without a new analysis id (see [Versions](../components/common/analysis-authoring.md#versions));
 - writes one event per 30-second epoch: the predicted stage, mapped from YASA's names
   (`WAKE`, `N1`, `N2`, `N3`, `REM`) to the platform's labels, with its probability.
 
@@ -150,8 +154,7 @@ requires at least 100 Hz.
   did not state the bound. In 33.0.0, the commented `evidence` example in the
   generated configuration, a list with a `citation` key, fails validation.
 - **Resolution.** The guide states the bound and the `publications` shape since
-  31.0.0. The commented example is still outdated in 33.0.0; the shape above
-  validates.
+  31.0.0, and the commented example validates once uncommented since 33.1.0.
 
 ## 4. Lock the dependencies
 
@@ -265,16 +268,21 @@ with recording length are not in the author's file (step 11).
   run: 2 EEG channel(s) selected; the analysis takes [1, 1]; 'EMG submental' is
   sampled at 1 Hz; EMG needs [100, inf] Hz`. The Makefile has no variable for a
   channel selection.
-- **Resolution.** Not fixed in 33.0.0. Run `yousleep-manifest` with `--channel`, as
-  above. The tool has no option for subject values, so a hand run does not exercise
-  the demographics; the check's fixture does.
+- **Resolution.** Since 33.1.0, `make run` selects channels as the platform does,
+  keeping the first ones of each type up to the analysis's maximum and leaving out a
+  channel below the required rate; `CHANNELS` sets an explicit choice.
+  `yousleep-manifest` also takes `--age`, `--sex` and `--bmi`, so a hand run can
+  exercise the demographics, e.g. `make run RECORDING=night.edf
+  MANIFEST_ARGS="--age 40 --sex male"`.
 
 ## 9. Register the analysis
 
 The analysis was registered as [Registration](registration.md) describes. The image
 was checked on linux/amd64 with the same tool, and its digest was pinned in the
 registered configuration. With `data_rights: pending`, the analysis is registered
-privately and offered to one organisation. It was registered with a memory claim of
+privately and offered to one organisation. It is registered as "YASA sleep staging"
+with the id `yasa-sleep-staging-v1`: one lineage, so the name carries no version, and
+`provenance.source_version` records `YASA 0.7.0, classifiers 0.5.0`. It was registered with a memory claim of
 1024 MiB that had not been measured.
 
 ## 10. The first production run
@@ -346,16 +354,18 @@ The last column records whether the run with `yousleep-common` 33.0.0 met the pr
 | A sex of `other` or `unknown` was passed to YASA as female | The script | Depends on the method; the manifest's `sex` can also be `other` or `unknown` |
 | The script read every channel of the file | The script: pick, then load | No, because the generated script picks first; the check cannot detect it |
 | The memory claim was not measured | Measured at registration; a per-kHz term in the configuration model, 32.3.0 | Not an author step |
-| The commented `evidence` example in the generated configuration fails validation | Not fixed in 33.0.0 | Yes |
-| `make run` selects every channel, which the manifest tool refuses for this configuration | Not fixed in 33.0.0; run `yousleep-manifest` with `--channel` | Yes |
+| The commented `evidence` example in the generated configuration fails validation | `yousleep-init`, 33.1.0 | Yes |
+| `make run` selects every channel, which the manifest tool refuses for this configuration | `yousleep-manifest` selects as the platform does, 33.1.0 | Yes |
+| A hand run cannot set subject values | `yousleep-manifest --age --sex --bmi`, 33.1.0 | Yes |
+| YASA picks its newest trained classifiers, so a YASA release could change results silently | The script names generation 0.5.0; `provenance.source_version` records it, 33.2.0 | Not an author step before 33.2.0 |
 
 ## Conclusion
 
 Packaging YASA took a script of about 100 lines, a configuration, and a Dockerfile
 with one system library. The earlier attempts and the first production run found
 problems in the tools, the guide and the platform, each now fixed in a released version
-or in the platform's behaviour; the run with 33.0.0 passed every check and met two
-problems in the generated files that remain open. The guide now covers optional
+or in the platform's behaviour; the run with 33.0.0 passed every check and met three
+problems in the generated files and the manifest tool, fixed in 33.1.0. The guide now covers optional
 channel types, system libraries missing from the slim base, the architecture of the
 recorded output and the run without optional inputs, and the platform team measures
 the memory that scales with recording length at registration.
