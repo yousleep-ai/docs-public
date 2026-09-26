@@ -8,7 +8,7 @@ on the platform.
 ## How the site is organised
 
 - `docs/` holds the pages that describe how the parts fit together: the home
-  page, *Start here* and *Registration*.
+  page, *Start here*, *Registration* and the YASA packaging example.
 - Every other page is maintained in the repository of the component it
   describes and is pulled in at build time. `sources.yml` lists which pages
   are published. Adding a page to that list is a publication decision and is
