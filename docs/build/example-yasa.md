@@ -3,20 +3,22 @@
 This tutorial packages an existing, published sleep-staging method for the platform:
 [YASA](https://github.com/raphaelvallat/yasa), an open-source Python library by
 Raphael Vallat whose automatic sleep staging is described in
-[Vallat and Walker (2021)](https://doi.org/10.7554/eLife.70092). You generate a project,
-write a short script around YASA, describe it in a configuration, build an image, and
-check it with the same tool the platform runs. The same steps apply to any method you
-can call from Python.
+[Vallat and Walker (2021)](https://doi.org/10.7554/eLife.70092). The steps are: generate
+a project, write a short script around YASA, write its configuration, build an image,
+and check it with the same tool the platform runs. They apply to any method that can be
+called from Python.
+
+## Overview
 
 | | |
 |---|---|
-| **You will build** | A container image and a configuration that run YASA's sleep staging on the channels the platform selects, ready to send for registration |
+| **Result** | A container image and a configuration that run YASA's sleep staging on the channels the platform selects, ready to send for registration |
 | **Time** | About an hour. The first image build takes 5 to 10 minutes, longer under emulation on an arm64 machine such as a Mac with Apple silicon |
-| **You need** | Docker, uv (or Python 3.11 or later with pip), and a text editor |
+| **Requirements** | Docker, uv (or Python 3.11 or later with pip), and a text editor |
 | **Tested with** | `yousleep-common` 33.4.0 and YASA 0.7.0 |
 | **Finished project** | [`yasa-sleep-staging/`](https://github.com/yousleep-ai/analysis-example/tree/main/yasa-sleep-staging) in the public examples repository |
 
-## Before you start
+## Tools and resources
 
 | Tool | What it is for | Install |
 |---|---|---|
@@ -70,7 +72,7 @@ make the other two optional. `@81` is the lowest sampling rate each channel may 
 YASA requires more than 80 Hz.
 
 `make verify` builds the image and checks it. It passes on the generated project before
-you change anything, so every later failure comes from your own change.
+any change, so a later failure points to the change that caused it.
 
 ## 2. Write the script
 
@@ -148,7 +150,7 @@ The script sets no thread limits: the platform sets the thread-count variables
 (`OMP_NUM_THREADS` and the others) to the analysis's cores, and the libraries YASA uses
 read them.
 
-## 3. Describe it in the configuration
+## 3. Write the configuration
 
 `yasa-staging.yaml` already holds the channel types and the provenance from the
 command's flags. Add the subject values, the five output labels, the full-probability
@@ -313,7 +315,7 @@ make verify   # PASS expected: matches the recorded document
 ```
 
 Commit the recorded document with the project. Every later `make verify` compares the
-image's output with it, so a change that alters results shows. Record it from the
+image's output with it, so any change in results is reported. Record it from the
 linux/amd64 build: floating-point results differ between architectures, and an arm64
 build does not match an amd64 recording.
 
@@ -352,11 +354,11 @@ that pads the signal to the next power of two, so its memory grows by about 100 
 200 MiB per hour at 256 to 512 Hz and steps with recording length. At every point the
 meter measured, the claim leaves at least 30% headroom above the peak.
 
-## What you have built
+## Summary
 
-You have a project that runs a published method on the platform's terms: it loads only
-the channels it is given, declares what it needs and produces, passes the check the
-platform runs, and records its own output so that a change to it shows. The same steps
-package any method you can call from Python; start from
+The project runs a published method as the platform expects: it loads only the channels
+it is given, declares what it needs and produces, passes the check the platform runs,
+and records its output so that any change in results is reported. The same steps
+package any method that can be called from Python; start from
 [Starting a project](../components/common/init.md) and the
 [finished YASA project](https://github.com/yousleep-ai/analysis-example/tree/main/yasa-sleep-staging).
