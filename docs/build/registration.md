@@ -61,4 +61,4 @@ The licence class in the configuration sets the terms on which the analysis may 
 The check you run and the check we run are the same tool. What is being designed
 is the path between them: submitting the bundle above from the portal, a quarantine
 where an image waits until the check has passed, and registration without a person
-in the loop. When that exists, this page will describe a single command.
+in the loop.
