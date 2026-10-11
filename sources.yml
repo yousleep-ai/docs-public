@@ -39,6 +39,6 @@ sources:
     # The pages for the person who installs and operates the runner at a site.
     target: components/runner
     include:
-      - site/index.md
-      - site/install.md
-      - site/operate.md
+      - index.md
+      - install.md
+      - operate.md
