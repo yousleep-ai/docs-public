@@ -56,4 +56,8 @@ nav:
     - Checking an image: "components/common/conformance.md"
     - Registration: "build/registration.md"
     - "Tutorial: package YASA": "build/example-yasa.md"
+  - Run analyses at your site:
+    - Overview: "components/runner/site/index.md"
+    - Install the runner: "components/runner/site/install.md"
+    - Operate the runner: "components/runner/site/operate.md"
   - API reference: "reference/Common/"
