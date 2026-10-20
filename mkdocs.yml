@@ -59,6 +59,7 @@ nav:
     - "Tutorial: package YASA": "build/example-yasa.md"
   - Your own hardware:
     - The runner: "components/runner/index.md"
+    - Quick start: "components/runner/quickstart.md"
     - Set up a site: "components/runner/site.md"
     - Keep recordings in your own bucket: "components/runner/storage.md"
     - Data and security: "components/runner/data-and-security.md"
