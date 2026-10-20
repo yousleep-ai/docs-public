@@ -38,6 +38,15 @@ its Python SDK, or by registering an analysis of your own to run on it.
 
     [:octicons-arrow-right-24: Packaging an analysis](components/common/analysis-authoring.md)
 
+-   :material-server-outline:{ .lg .middle } **Run analyses at your site**
+
+    ---
+
+    Run your organisation's analyses on its own hardware, and keep its recordings
+    in its own bucket: what your IT sets up, and what leaves your site.
+
+    [:octicons-arrow-right-24: Set up a site](components/runner/site.md)
+
 -   :material-map-outline:{ .lg .middle } **Understand the platform**
 
     ---
