@@ -42,6 +42,7 @@ sources:
     target: components/runner
     include:
       - index.md
+      - quickstart.md
       - site.md
       - storage.md
       - data-and-security.md
