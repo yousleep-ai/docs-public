@@ -2,8 +2,8 @@
 
 The public developer site for the youSleep Portal, published at
 [docs.yousleep.ai](https://docs.yousleep.ai/).
-It covers the Python SDK, the REST API and how to package an analysis to run
-on the platform.
+It covers the Python SDK, the REST API, how to package an analysis to run on
+the platform, and the runner that runs analyses at an organisation's own site.
 
 ## How the site is organised
 

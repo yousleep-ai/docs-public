@@ -33,3 +33,17 @@ sources:
     reference:
       package: yousleep_common
       display: Common
+
+  # The runner, for the IT of a site that runs analyses on its own hardware.
+  - name: runner
+    repo: yousleep-ai/runner
+    ref: main
+    docs: docs
+    target: components/runner
+    include:
+      - index.md
+      - site.md
+      - storage.md
+      - data-and-security.md
+      - install.md
+      - operate.md

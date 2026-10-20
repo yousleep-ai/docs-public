@@ -4,7 +4,7 @@
 INHERIT: mkdocs.base.yml
 
 site_name: youSleep Developer Documentation
-site_description: The youSleep Portal for developers — the Python SDK, the REST API, and how to package an analysis to run on the platform.
+site_description: The youSleep Portal for developers — the Python SDK, the REST API, how to package an analysis to run on the platform, and the runner that runs analyses at your own site.
 site_url: https://docs.yousleep.ai/
 repo_url: https://github.com/yousleep-ai/docs-public
 repo_name: yousleep-ai/docs-public
@@ -57,4 +57,11 @@ nav:
     - Checking an image: "components/common/conformance.md"
     - Registration: "build/registration.md"
     - "Tutorial: package YASA": "build/example-yasa.md"
+  - Your own hardware:
+    - The runner: "components/runner/index.md"
+    - Set up a site: "components/runner/site.md"
+    - Keep recordings in your own bucket: "components/runner/storage.md"
+    - Data and security: "components/runner/data-and-security.md"
+    - Install the runner: "components/runner/install.md"
+    - Operate the runner: "components/runner/operate.md"
   - API reference: "reference/Common/"
