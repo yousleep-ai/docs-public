@@ -47,6 +47,15 @@ its Python SDK, or by registering an analysis of your own to run on it.
 
     [:octicons-arrow-right-24: Set up a site](components/runner/site.md)
 
+-   :material-shield-check-outline:{ .lg .middle } **Assess security and data**
+
+    ---
+
+    How youSleep is hosted and secured, where a recording goes and how it is
+    deleted, and who else processes data.
+
+    [:octicons-arrow-right-24: Security overview](trust/security.md)
+
 -   :material-map-outline:{ .lg .middle } **Understand the platform**
 
     ---

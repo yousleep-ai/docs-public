@@ -65,4 +65,8 @@ nav:
     - Data and security: "components/runner/data-and-security.md"
     - Install the runner: "components/runner/install.md"
     - Operate the runner: "components/runner/operate.md"
+  - Security and data:
+    - Security overview: "trust/security.md"
+    - How data flows: "trust/data-flow.md"
+    - Sub-processors: "trust/sub-processors.md"
   - API reference: "reference/Common/"
