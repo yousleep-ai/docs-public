@@ -24,6 +24,7 @@ sources:
       - integration-guide.md
       - version-pairing.md
       - components.md
+      - sleep-statistics.md
       - edf.md
       - analysis-manifest.md
       - events-document.md

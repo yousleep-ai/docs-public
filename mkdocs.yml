@@ -48,6 +48,7 @@ nav:
     - Integrating a system: "components/common/integration-guide.md"
     - Version pairing: "components/common/version-pairing.md"
     - What is in the package: "components/common/components.md"
+    - Sleep statistics: "components/common/sleep-statistics.md"
     - EDF headers and pseudonymisation: "components/common/edf.md"
   - Build an analysis:
     - Packaging an analysis: "components/common/analysis-authoring.md"

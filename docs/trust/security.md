@@ -39,8 +39,9 @@ controller until one is formed. *The operating entity will be named here then.*
 - API keys act as one account, reach only what it owns, expire within a year,
   and cannot manage the account or create keys. Only their hash is stored.
 - Projects are private by default. Sharing stays within the organisation, and
-  opening, downloading and exporting are logged for the project's owner and the
-  organisation's owners and admins.
+  opening, downloading and exporting are logged for the project's owner, and for
+  the organisation's owners and admins when the project is open to the
+  organisation or kept in its bucket.
 - Staff have an administrator role, checked on every administrative route.
   Administrative actions are recorded in an audit trail.
 - Requests are rate-limited per account, per API key and, before sign-in, per
