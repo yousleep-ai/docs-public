@@ -20,7 +20,10 @@ is created.
 - The portal and the SDK clean the header of the copy being uploaded, on the
   user's computer: the patient and recording identification fields are blanked.
 - Per project, the start date can also be removed, and file names replaced by
-  codes youSleep issues. youSleep keeps no map of codes to names.
+  codes youSleep issues. For an upload, youSleep keeps no map of codes to names. A
+  file registered where it is in an organisation's bucket keeps its path there,
+  which youSleep needs to sign access to it, so such paths should not identify
+  anyone.
 - The server checks every header twice, at registration and after upload, and
   deletes a file that fails. A refused header is not logged or kept.
 - Signals, annotation text inside the file, and entered study data are not
@@ -32,7 +35,8 @@ is created.
 2. The file goes straight from the user's computer to storage, by a signed URL.
 3. youSleep's runners read it once to check it and take its annotations
    (times and labels, and the text of any that match no known label).
-4. Each analysis runs on youSleep's server in a container with no network. The
+4. Each analysis runs in a container with no network: on youSleep's server, or
+   on the organisation's own runner when it runs its analyses at its site. The
    result goes to storage; the runner deletes its copy of the recording.
 5. The portal reads recordings from storage by signed URLs, a part at a time.
 
@@ -59,6 +63,7 @@ What survives an account's deletion:
 
 ## Who can read a recording
 
-The user who uploaded it, members it was shared with in the organisation, and
-youSleep's staff. Recordings are not sold, used for advertising, or used to train
+Whoever can open its project: the project's owner and, as the owner chooses,
+every member of the organisation or the members it is shared with. youSleep's
+staff can also reach it. Recordings are not sold, used for advertising, or used to train
 models.

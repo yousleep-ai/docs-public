@@ -10,9 +10,9 @@
   writes what only an author can know; the platform sets the rest at registration.
 
 **API key**
-: A credential for a machine, created on the account page once an administrator has
-  enabled keys for the account, scoped and expiring. People sign in with an email and a
-  password instead.
+: A credential for a machine, scoped and expiring. Any account can create one on its
+  account page, with its password; an administrator can withdraw that right. People sign
+  in with an email and a password instead.
 
 **Block**
 : The unit of an events document: a run of consecutive events of equal duration
